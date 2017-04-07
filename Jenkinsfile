@@ -6,13 +6,19 @@ pipeline {
     stage('Build') {
       parallel (
         "Linux" : {
-          echo 'Build on Linux'
+          steps {
+            echo 'Build on Linux'
+          }
         },
         "Mac" : {
-          echo 'Build on Mac'
+          steps {
+            echo 'Build on Mac'
+          }
         },
         "Windows" : {
-          echo 'Build on Windows'
+          steps {
+            echo 'Build on Windows'
+          }
         }
       )
     }
