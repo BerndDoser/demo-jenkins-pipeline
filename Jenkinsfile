@@ -4,23 +4,19 @@ pipeline {
   agent none 
   stages {
     stage('Build') {
-      parallel (
-        "Linux" : {
-          steps {
-            echo 'Build on Linux'
+      steps {
+        parallel (
+          "Linux" : {
+              echo 'Build on Linux'
+          },
+          "Mac" : {
+              echo 'Build on Mac'
+          },
+          "Windows" : {
+              echo 'Build on Windows'
           }
-        },
-        "Mac" : {
-          steps {
-            echo 'Build on Mac'
-          }
-        },
-        "Windows" : {
-          steps {
-            echo 'Build on Windows'
-          }
-        }
-      )
+        )
+      }
     }
   }
 }
