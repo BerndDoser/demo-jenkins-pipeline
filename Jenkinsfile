@@ -4,22 +4,11 @@ pipeline {
   agent none 
   stages {
     stage('Build') {
-      agent {
-        docker 'maven:3-alpine'
-      } 
-      steps {
-        echo 'Hello, Maven'
-        sh 'mvn --version'
-      }
-    }
-    stage('Test') {
-      agent {
-        docker 'openjdk:8-jre'
-      } 
-      steps {
-        echo 'Hello, JDK'
-        sh 'java -version'
-      }
+      parallel (
+        "Linux"   : echo 'Build on Linux'
+        "Mac"     : echo 'Build on Mac'
+        "Windows" : echo 'Build on Windows'
+      )
     }
   }
 }
