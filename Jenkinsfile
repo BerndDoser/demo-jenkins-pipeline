@@ -1,24 +1,41 @@
-#!groovy
-
 pipeline {
-  agent none 
+  agent any
   stages {
     stage('Build') {
-      agent {
-        docker 'maven:3-alpine'
-      } 
       steps {
-        echo 'Hello, Maven'
-        sh 'mvn --version'
+        parallel(
+          "Linux": {
+            echo 'Build on Linux'
+            
+          },
+          "Mac": {
+            echo 'Build on Mac'
+            
+          },
+          "Windows": {
+            echo 'Build on Windows'
+            
+          }
+        )
       }
     }
     stage('Test') {
-      agent {
-        docker 'openjdk:8-jre'
-      } 
       steps {
-        echo 'Hello, JDK'
-        sh 'java -version'
+        parallel(
+          "Test Linux": {
+            echo 'Test on Linux'
+            
+          },
+          "Test Mac": {
+            echo 'Test on Mac'
+            
+          }
+        )
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploy'
       }
     }
   }
