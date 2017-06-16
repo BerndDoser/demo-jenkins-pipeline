@@ -9,7 +9,8 @@ node('docker-host')
 
     stage('Test')
     {
-        echo 'Test'
+        def workspace = pwd()
+        echo 'Test workspace = ${workspace}'
         //junit 'reports/*.xml'
         step([$class: 'JUnitResultArchiver', testResults: 'reports/*.xml', healthScaleFactor: 1.0])
     }
