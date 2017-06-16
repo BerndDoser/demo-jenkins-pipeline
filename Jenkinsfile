@@ -1,29 +1,34 @@
 #!groovy
 
-node('docker-host')
+pipeline
 {
-  stage('Checkout')
-  {
-    echo 'Checkout'
-    git url: "https://github.com/BerndDoser/demo-jenkins-pipeline.git", branch: 'groovy-simple'
-  }
+  agent any
 
-  stage('Build')
+  stages
   {
-    echo 'Build'
-  }
+    stage('Build')
+    {
+      steps
+      {
+        echo 'Build'
+      }
+    }
 
-  stage('Test')
-  {
-    def workspace = pwd()
-    echo "Test workspace = ${workspace}"
-    sh 'ls -al'
-    //junit 'reports/*.xml'
-    step([$class: 'JUnitResultArchiver', testResults: 'reports/*.xml', healthScaleFactor: 1.0])
-  }
+    stage('Test')
+    {
+      steps
+      {
+        echo "Test"
+        junit 'reports/*.xml'
+      }
+    }
 
-  stage('Deploy')
-  {
-    echo 'Deploy'
+    stage('Deploy')
+    {
+      steps
+      {
+        echo 'Deploy'
+      }
+    }
   }
 }
