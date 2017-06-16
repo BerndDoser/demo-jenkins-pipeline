@@ -15,11 +15,10 @@ node('docker-host')
 
   stage('Test')
   {
-    def workspace = pwd()
-    echo "Test workspace = ${workspace}"
-    sh 'ls -al'
-    //junit 'reports/*.xml'
-    step([$class: 'JUnitResultArchiver', testResults: 'reports/*.xml', healthScaleFactor: 1.0])
+    echo 'Test'
+    // Need new timestamp. Otherwise junit think tests were not running.
+    sh 'touch reports/*.xml'
+    junit 'reports/*.xml'
   }
 
   stage('Deploy')
