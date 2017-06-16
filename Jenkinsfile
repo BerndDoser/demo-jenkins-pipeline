@@ -11,6 +11,7 @@ node('docker-host')
     {
         def workspace = pwd()
         echo "Test workspace = ${workspace}"
+        sh 'ls -al'
         //junit 'reports/*.xml'
         step([$class: 'JUnitResultArchiver', testResults: 'reports/*.xml', healthScaleFactor: 1.0])
     }
