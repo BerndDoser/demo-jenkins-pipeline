@@ -18,7 +18,9 @@ pipeline
     {
       steps
       {
-        echo "Test"
+        echo 'Test'
+        // Need new timestamp. Otherwise junit think tests were not running.
+        sh 'touch reports/*.xml'
         junit 'reports/*.xml'
       }
     }
