@@ -10,8 +10,8 @@ node('docker-host')
     stage('Test')
     {
         echo 'Test'
-        //junit '**/reports/*.xml'
-        step([$class: 'JUnitResultArchiver', testResults: '**/reports/*.xml', healthScaleFactor: 1.0])
+        //junit 'reports/*.xml'
+        step([$class: 'JUnitResultArchiver', testResults: 'reports/*.xml', healthScaleFactor: 1.0])
     }
 
     stage('Deploy')
