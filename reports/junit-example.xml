@@ -1,5 +1,7 @@
-<testsuite tests="3">
-    <testcase classname="foo1" name="Test 1"/>
-    <testcase classname="foo2" name="Test 2"/>
-    <testcase classname="foo3" name="Test 3"/>
-</testsuite>
+<testsuites>
+  <testsuite name="Suite1" tests="3" failures="0" timestamp="2012-08-23T14:40:44.874443-05:00">
+    <testcase name="Test 1" classname="class1"/>
+    <testcase name="Test 2" classname="class2"/>
+    <testcase name="Test 3" classname="class3"/>
+  </testsuite>
+</testsuites>
