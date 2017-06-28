@@ -1,6 +1,6 @@
 #!groovy
 
-node('docker-host')
+node('docker-nodes')
 {
   stage('Checkout')
   {
